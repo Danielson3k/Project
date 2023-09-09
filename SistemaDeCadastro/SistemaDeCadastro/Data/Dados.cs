@@ -17,7 +17,7 @@ namespace SistemaDeCadastro.Data
         MySqlCommand comando;
        
 
-        public void SalvarCadastro()
+        public Dados()
         {
            string srtSql = @"INSERT INTO CLIENTE (NOME,ENDERECO,CEP,BAIRRO,CIDADE,
                              UF,TELEFONE) 
@@ -29,17 +29,28 @@ namespace SistemaDeCadastro.Data
                              @Cidade, 
                              @Uf, 
                              @Telefone);";
-            conexao = new MySqlConnection(srtConexao);
-            comando = new MySqlCommand(srtSql, conexao);
-            comando.Parameters.AddWithValue("@Nome", txtNome.Text);
-            comando.Parameters.AddWithValue("@Endereco", txtEndereco.Text);
-            comando.Parameters.AddWithValue("@Cep", mskCep.Text);
-            comando.Parameters.AddWithValue("@Bairro", txtBairro.Text);
-            comando.Parameters.AddWithValue("@Cidade", txtCidade.Text);
-            comando.Parameters.AddWithValue("@Uf", txtUf.Text);
-            comando.Parameters.AddWithValue("@Telefone", mskTelefone.Text);
-            comando.CommandType = CommandType.Text;
-            conexao.Open();
+            this.conexao = new MySqlConnection(srtConexao);
+            this.comando = new MySqlCommand(srtSql, conexao);
+            this.comando.Parameters.AddWithValue("@Nome", this.txtNome.Text);
+            this.comando.Parameters.AddWithValue("@Endereco", this.txtEndereco.Text);
+            this.comando.Parameters.AddWithValue("@Cep", this.mskCep.Text);
+            this.comando.Parameters.AddWithValue("@Bairro", this.txtBairro.Text);
+            this.comando.Parameters.AddWithValue("@Cidade", this.txtCidade.Text);
+            this.comando.Parameters.AddWithValue("@Uf", this.txtUf.Text);
+            this.comando.Parameters.AddWithValue("@Telefone", this.mskTelefone.Text);
+            this.comando.CommandType = CommandType.Text;
+            this.conexao.Open();
+            try
+            {
+
+                MessageBox.Show("Cadastro criado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erro");
+            }
+            finally { this.conexao.Close(); }
 
 
         }

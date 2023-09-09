@@ -1,3 +1,5 @@
+using SistemaDeCadastro.Data;
+
 namespace SistemaDeCadastro
 {
     public partial class Form1 : Form
@@ -16,6 +18,7 @@ namespace SistemaDeCadastro
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
             
+
         }
     }
 }
